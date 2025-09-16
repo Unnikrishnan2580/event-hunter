@@ -1,0 +1,81 @@
+{
+  "login": {
+    "title": "Willkommen bei Event Hunter!",
+    "emailPlaceholder": "E-Mail",
+    "passwordPlaceholder": "Passwort",
+    "signIn": "Anmelden",
+    "unlockBiometric": "Mit biometrischen Daten entsperren"
+  },
+  "appTitles": {
+    "filterTitle": "Events filtern",
+    "bookmarkedTitle": "Markierte Events",
+    "navigateEvent": "Zum Event navigieren",
+    "events": "Events"
+  },
+  "appLabels": {
+    "calendarLabel": "Kalender",
+    "bookmarkLabel": "Merken",
+    "navigateLabel": "Navigieren",
+    "detailsLabel": "Details",
+    "mapLabel": "Karte",
+    "noteLabel": "Notiz",
+    "categoryLabel": "Kategorie",
+    "startDateLabel": "Startdatum",
+    "endDateLabel": "Enddatum",
+    "distanceLabel": "Entfernung (km)",
+    "priceRangeLabel": "Preisspanne",
+    "remindMeLabel": "Erinnere mich",
+    "shareLabel": "Teilen"
+  },
+  "appButtonLabels": {
+    "applyButtonLabel": "Anwenden"
+  },
+  "errorMessages": {
+    "invalidEmail": "Ungültige E-Mail-Adresse",
+    "passwordRequired": "Passwort erforderlich",
+    "loginFailure": "Entschuldigung, ungültige Zugangsdaten. Bitte überprüfen Sie Ihre Angaben.",
+    "calendarAddFailed": "Entschuldigung, das Event konnte nicht zum Kalender hinzugefügt werden.",
+    "reminderErrorMessage": "Erinnerung für das Event konnte nicht gesetzt werden ",
+    "locationErrorMessage": "Bitte aktivieren Sie Ihren Standort und versuchen Sie es erneut.",
+    "mapPermissionError": "Standort nicht zugänglich. Bitte aktivieren Sie GPS/Berechtigungen.",
+    "ticketmasterAPIError": "Events konnten nicht von der Ticketmaster-API geladen werden",
+    "predictHQAPIError": "Events konnten nicht von der PredictHQ-API geladen werden",
+    "APIError": "Events konnten nicht von der Backend-API geladen werden"
+  },
+  "successMessages": {
+    "calendarAddSuccess": "Event erfolgreich zum Kalender hinzugefügt!"
+  },
+  "requestMessages": {
+    "enableBiometricAUth": "Bitte aktivieren Sie die biometrische Authentifizierung für sicheren Zugriff."
+  },
+  "disclaimerMessages": {
+    "loadingMessage": "Lade Events…",
+    "noMapData": "Keine Kartendaten für dieses Event verfügbar.",
+    "noBookmarks": "Sie haben bisher keine Events markiert.",
+    "offlineMessage": "Sie sind offline."
+  },
+  "biometric": {
+    "enableHeader": "Biometrische Daten aktivieren?",
+    "enableMessage": "Verwenden Sie Face ID / Fingerabdruck, um die App beim nächsten Mal schneller zu entsperren."
+  },
+  "common": {
+    "yes": "Ja",
+    "no": "Nein",
+    "searchPlaceholder": "Events suchen…",
+    "preferences": "Einstellungen",
+    "darkTheme": "Dunkles Thema",
+    "language": "Sprache",
+    "cancel": "Abbrechen",
+    "mobileData": "Mobile Daten Einstellungen öffnen",
+    "wifiSettings": "WLAN-Einstellungen öffnen",
+    "noInternet": "Keine Internetverbindung",
+    "enableInternet": "Bitte aktivieren Sie WLAN oder mobile Daten"
+  },
+  "menuLabels": {
+    "homeLabel": "Startseite",
+    "discoverLabel": "Entdecken",
+    "bookmarkLabel": "Merken",
+    "profileLabel": "Profil",
+    "logoutLabel": "Abmelden"
+  }
+}

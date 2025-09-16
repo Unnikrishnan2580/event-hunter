@@ -131,7 +131,7 @@
     // checks wether email and password are valid 
     validateEmail()
     validatePassword()
-    if (login(email.value, password.value)) {
+    if (login(email.value, password.value,'credentialsLogin')) {
       // Invoke biometric authentication for future logins.
       promptEnableBiometric()
     } else {

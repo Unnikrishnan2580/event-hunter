@@ -16,11 +16,11 @@ export interface User {
 const currentUser = ref<User | null>(null)
 
 /** Validate email & password against the local guest list */
-export function login(email: string, password: string): boolean {
+export function login(email: string, password: string, authType: string): boolean {
   const user = (testUsers as User[]).find(
     user => user.email === email && user.password === password
   )
-  if (user) {
+  if (user && authType === 'credentialsLogin') {
     currentUser.value = user
     localStorage.setItem('auth_session', JSON.stringify(user))
     return true
@@ -57,7 +57,7 @@ export async function tryBiometricRestore(): Promise<boolean> {
       const user = testUsers.find(u => u.id === uid) || null
       if (!user) return false
 
-      login(user.email, user.password)
+      login(user.email, user.password,'biometricLogin')
       return true
     } catch (e) {
       console.warn('biometric restore error', e)

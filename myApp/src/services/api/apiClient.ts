@@ -1,6 +1,7 @@
 // src/services/apiClient.ts
 import { CapacitorHttp } from '@capacitor/core'
 import { APP_CONSTANTS } from '../constants'
+import { showErrorToast } from '@/utils/toast';
 
 const TM_BASE_URL = APP_CONSTANTS.TM_BASE_URL;
 const TM_API_KEY = APP_CONSTANTS.TM_API_KEY;
@@ -21,6 +22,8 @@ export async function apiGet<T>(
   })
 
   if (res.status !== 200) {
+    // showErrorToast(`Status: ${res.status}, ${t('errorMessages.ticketmasterAPIError')}`);
+    showErrorToast("Unable to load Events from ticketmaster API");
     throw new Error(`Ticketmaster API error: ${res.status} – ${res.data || 'No details'}`)
   }
 
@@ -44,6 +47,8 @@ export async function apiPost<T>(
   })
 
   if (res.status < 200 || res.status >= 300) {
+    showErrorToast("Unable to load Events from backend API")
+    // showErrorToast(`Status: ${res.status}, ${t('errorMessages.APIError')}`);
     throw new Error(`API POST error: ${res.status} – ${res.data || 'No details'}`)
   }
 
@@ -65,6 +70,8 @@ export async function apiGetPredictHQ<T>(
   })
 
   if (res.status !== 200) {
+    showErrorToast("Unable to load Events from PredictHQ API");
+    // showErrorToast("Status ${res.status}m ${t('errorMessages.predictHQAPIError')}");
     throw new Error(`PredictHQ API error: ${res.status} – ${res.data || 'No details'}`)
   }
 

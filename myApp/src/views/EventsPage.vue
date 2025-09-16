@@ -110,8 +110,9 @@
   import EventSkeleton from '@/components/EventSkeleton.vue'
   import { showActionSheet } from '@/utils/actionSheet'
   import { openSortSheet } from '@/composables/SortSheet'
+  import { currentUser } from '@/services/auth/auth'
 
-  const { t } = useI18n() // <-- i18n
+  const { t, locale } = useI18n() // <-- i18n
   const events = ref<EventItem[]>([])
   const page = ref(0)
   const loading = ref(false)
@@ -329,6 +330,8 @@
    */
   onMounted(async () => {
     eventBus.on('bookmarkChanged', refreshUI)
+    const preferredLanguage = currentUser.value?.preferences.language;
+    locale.value = preferredLanguage || 'en'
     // events.value = await apiService.fetchlocationBasedEvents(33.44589900, -112.07131300);
     userLocation.value = await LocationService.getCurrentLocation();
     if (!userLocation.value) {
@@ -336,7 +339,6 @@
     } else {
       console.log('User location:', userLocation.value);
     }
-
   })
 
 </script>

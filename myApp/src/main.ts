@@ -57,8 +57,8 @@ router.isReady().then(async () => {
   await StatusBar.setOverlaysWebView({ overlay: true });
   
   // Optional: match Ionic toolbar color
-  await StatusBar.setBackgroundColor({ color: '#3880ff' }); // your primary color
-  await StatusBar.setStyle({ style: Style.Light });
+  await StatusBar.setBackgroundColor({ color: '#00000000' }); // your primary color
+  await StatusBar.setStyle({ style: currentUser?.value?.preferences?.theme === 'dark' ? Style.Light : Style.Light });
   app.use(i18n)
   app.use(pinia);
   app.mount('#app');

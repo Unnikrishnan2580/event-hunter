@@ -31,7 +31,7 @@
       <ion-list>
         <ion-list-header>
           <ion-label>
-            {{ t('common.Preferences') }}
+            {{ t('common.preferences') }}
           </ion-label>
         </ion-list-header>
 
@@ -74,7 +74,8 @@
             @ionChange="savePreferences"
           >
             <ion-select-option value="en">English</ion-select-option>
-            <ion-select-option value="gr">German</ion-select-option>
+            <ion-select-option value="fr">French</ion-select-option>
+            <ion-select-option value="de">German</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-list>
@@ -117,7 +118,7 @@
   import { currentUser } from '@/services/auth/auth'
   import { useTheme } from '@/composables/useTheme'
 
-  const { t } = useI18n() // <-- i18n
+  const { t, locale } = useI18n() // <-- i18n
   // Mock user data – replace with your real auth/user store
   const profile = reactive({
     id: currentUser.value?.id,
@@ -162,6 +163,8 @@
   function savePreferences() {
     localStorage.setItem('userPrefs', JSON.stringify(profile.preferences))
     localStorage.setItem('auth_session', JSON.stringify(profile))
+    const selectedLang = profile.preferences.language;
+    locale.value = selectedLang || 'en';   // immediately switches app language
   }
 
 </script>

@@ -1,12 +1,81 @@
 {
   "login": {
-    "title": "Connexion",
-    "email": "e-mail",
-    "password": "Mot de passe",
-    "emailPlaceholder": "Entrez votre e-mail",
-    "passwordPlaceholder": "Entrez votre mot de passe",
-    "submit": "Se connecter",
-    "invalidEmail": "Veuillez entrer un e-mail valide.",
-    "requiredPassword": "Le mot de passe ne peut pas être vide."
+    "title": "Bienvenue sur Event Hunter !",
+    "emailPlaceholder": "E-mail",
+    "passwordPlaceholder": "Mot de passe",
+    "signIn": "Se connecter",
+    "unlockBiometric": "Déverrouiller avec biométrie"
+  },
+  "appTitles": {
+    "filterTitle": "Filtrer les événements",
+    "bookmarkedTitle": "Événements favoris",
+    "navigateEvent": "Naviguer vers l'événement",
+    "events": "Événements"
+  },
+  "appLabels": {
+    "calendarLabel": "Calendrier",
+    "bookmarkLabel": "Favori",
+    "navigateLabel": "Naviguer",
+    "detailsLabel": "Détails",
+    "mapLabel": "Carte",
+    "noteLabel": "Note",
+    "categoryLabel": "Catégorie",
+    "startDateLabel": "Date de début",
+    "endDateLabel": "Date de fin",
+    "distanceLabel": "Distance (km)",
+    "priceRangeLabel": "Fourchette de prix",
+    "remindMeLabel": "Me rappeler",
+    "shareLabel": "Partager"
+  },
+  "appButtonLabels": {
+    "applyButtonLabel": "Appliquer"
+  },
+  "errorMessages": {
+    "invalidEmail": "Adresse e-mail invalide",
+    "passwordRequired": "Mot de passe requis",
+    "loginFailure": "Désolé, identifiants invalides. Veuillez vérifier vos informations.",
+    "calendarAddFailed": "Désolé, impossible d'ajouter l'événement à votre calendrier.",
+    "reminderErrorMessage": "Impossible de définir un rappel pour l'événement ",
+    "locationErrorMessage": "Veuillez activer votre localisation et réessayer.",
+    "mapPermissionError": "Impossible d'accéder à la localisation. Veuillez activer le GPS/les autorisations.",
+    "ticketmasterAPIError": "Impossible de charger les événements depuis l'API Ticketmaster",
+    "predictHQAPIError": "Impossible de charger les événements depuis l'API PredictHQ",
+    "APIError": "Impossible de charger les événements depuis l'API backend"
+  },
+  "successMessages": {
+    "calendarAddSuccess": "Événement ajouté au calendrier avec succès !"
+  },
+  "requestMessages": {
+    "enableBiometricAUth": "Veuillez activer l'authentification biométrique pour un accès sécurisé."
+  },
+  "disclaimerMessages": {
+    "loadingMessage": "Chargement des événements…",
+    "noMapData": "Aucune donnée de carte disponible pour cet événement.",
+    "noBookmarks": "Vous n'avez enregistré aucun événement pour l'instant.",
+    "offlineMessage": "Vous êtes hors ligne."
+  },
+  "biometric": {
+    "enableHeader": "Activer la biométrie ?",
+    "enableMessage": "Utilisez Face ID / empreinte digitale pour déverrouiller l'application plus rapidement la prochaine fois."
+  },
+  "common": {
+    "yes": "Oui",
+    "no": "Non",
+    "searchPlaceholder": "Rechercher des événements…",
+    "preferences": "Préférences",
+    "darkTheme": "Thème sombre",
+    "language": "Langue",
+    "cancel": "Annuler",
+    "mobileData": "Ouvrir les paramètres de données mobiles",
+    "wifiSettings": "Ouvrir les paramètres Wi-Fi",
+    "noInternet": "Pas de connexion Internet",
+    "enableInternet": "Veuillez activer le Wi-Fi ou les données mobiles"
+  },
+  "menuLabels": {
+    "homeLabel": "Accueil",
+    "discoverLabel": "Découvrir",
+    "bookmarkLabel": "Favori",
+    "profileLabel": "Profil",
+    "logoutLabel": "Se déconnecter"
   }
 }

@@ -37,7 +37,10 @@
     "calendarAddFailed": "Sorry, Failed to add event to your calendar.",
     "reminderErrorMessage": "Unable to set reminder for the event ",
     "locationErrorMessage": "Please enable your location and try again.",
-    "mapPermissionError": "Unable to access location. Please enable GPS/permissions."
+    "mapPermissionError": "Unable to access location. Please enable GPS/permissions.",
+    "ticketmasterAPIError": "Unable to load Events from ticketmaster API",
+    "predictHQAPIError": "Unable to load Events from PredictHQ API",
+    "APIError": "Unable to load Events from backend API"
   },
   "successMessages": {
     "calendarAddSuccess": "Event added to calendar successfully!"
@@ -61,7 +64,7 @@
     "searchPlaceholder": "Search events…",
     "preferences": "Preferences",
     "darkTheme": "Dark Theme",
-    "Language": "Language",
+    "language": "Language",
     "cancel": "Cancel",
     "mobileData": "'Open Mobile Data Settings'",
     "wifiSettings": "Open Wi-Fi Settings",
