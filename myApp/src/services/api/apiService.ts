@@ -1,3 +1,4 @@
+import { LocationService } from '../locationService'
 import { apiGet, apiPost, apiGetPredictHQ } from './apiClient'
 
 export interface EventItem {
@@ -59,7 +60,6 @@ export const apiService = {
       { keyword, page, size }
     )
     const tmEvents = this.formatEventsData(tmData._embedded?.events || [])
-
     // --- PredictHQ ---
     const phqData = await apiGetPredictHQ<{ results: any[] }>(
       '/events/',
@@ -68,50 +68,74 @@ export const apiService = {
     const phqEvents = this.formatPredictHQData(phqData.results || [])
 
     // --- Merge & sort by date ---
-    return [...tmEvents, ...phqEvents].sort(
-      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
-    )
+    return [...await tmEvents, ...await phqEvents]
+  },
+  
+  async formatEventsData(events: any[]): Promise<EventItem[]> {
+    // Fixed reference point (e.g., user's location)
+
+    return Promise.all(
+      events.map(async (event) => {
+        // Extract event latitude & longitude safely
+        const eventLat = parseFloat(event._embedded?.venues?.[0]?.location?.latitude ?? '0');
+        const eventLng = parseFloat(event._embedded?.venues?.[0]?.location?.longitude ?? '0');
+
+        // Calculate distance for this event
+        const distanceKm =
+          (await LocationService.getDistanceKm( eventLat, eventLng)) || 0;
+
+        return {
+          id: event.id,
+          title: event.name,
+          description: event.info || '',
+          date: event.dates?.start?.localDate,
+          location: event._embedded?.venues?.[0]?.name || 'Unknown',
+          latitude: eventLat,
+          longitude: eventLng,
+          price: event.priceRanges?.[0]
+            ? `${event.priceRanges[0].min} - ${event.priceRanges[0].max} ${event.priceRanges[0].currency}`
+            : undefined,
+          category: event.classifications,
+          images: event.images || [],
+          popularity: event?.popularity || 0,
+          rank: event?.rank || 0,
+          distance: parseFloat(distanceKm.toFixed(2)) || 0, // now per-event
+          source: 'ticketmaster'
+        };
+      })
+    );
   },
 
-  formatEventsData(events: any[]): EventItem[] {
-    console.log('ticketmaster events: ',events[0]);
-    return events.map(event => ({
-      id: event.id,
-      title: event.name,
-      description: event.info || '',
-      date: event.dates?.start?.localDate,
-      location: event._embedded?.venues?.[0]?.name || 'Unknown',
-      latitude: event._embedded?.venues?.[0]?.location?.latitude,
-      longitude: event._embedded?.venues?.[0]?.location?.longitude,
-      price: event.priceRanges?.[0]
-        ? `${event.priceRanges[0].min} - ${event.priceRanges[0].max} ${event.priceRanges[0].currency}`
-        : undefined,
-      category: event.classifications,
-      images: event.images || [],
-      popularity: event?.popularity || 0,
-      rank: event?.rank || 0,
-      distance: event?.distance || 0,
-      source: 'ticketmaster'
-    }))
-  },
+  async formatPredictHQData(events: any[]): Promise<EventItem[]> {
 
-  formatPredictHQData(events: any[]): EventItem[] {
-    console.log('formatPredictHQData events: ',events[0]);
-    return events.map(event => ({
-      id: `phq_${event.id}`,
-      title: event.title,
-      description: event.description || '',
-      date: event.start.split('T')[0],
-      location: event.entities?.[0]?.name || 'Unknown',
-      latitude: event.location?.[1]?.toString(),
-      longitude: event.location?.[0]?.toString(),
-      price: event?.price || 0,
-      category: [],
-      images: event?.images,
-      popularity: event?.popularity || 0,
-      rank: event.rank,
-      distance: event?.distance || 0,
-      source: 'predicthq'
-    }))
-  }
+  return Promise.all(
+    events.map(async (event) => {
+      // PredictHQ uses [lng, lat] order in event.location
+      const eventLat = parseFloat(event.location?.[1] ?? '0');
+      const eventLng = parseFloat(event.location?.[0] ?? '0');
+
+      // Per-event distance calculation
+      const distanceKm =
+        (await LocationService.getDistanceKm(eventLat, eventLng)) || 0;
+
+      return {
+        id: `phq_${event.id}`,
+        title: event.title,
+        description: event.description || '',
+        date: event.start.split('T')[0], // Extract yyyy-mm-dd
+        location: event.entities?.[0]?.name || 'Unknown',
+        latitude: eventLat,
+        longitude: eventLng,
+        price: event?.price || 0,
+        category: [],
+        images: event?.images || [],
+        popularity: event?.popularity || 0,
+        rank: event.rank || 0,
+        distance: parseFloat(distanceKm.toFixed(2)) || 0, // per-event distance
+        source: 'predicthq'
+      };
+    })
+  );
+}
+
 }

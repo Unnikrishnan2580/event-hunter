@@ -4,6 +4,8 @@ import { OpenNativeSettings } from '@awesome-cordova-plugins/open-native-setting
 import { Capacitor } from '@capacitor/core';
 import { alertController } from '@ionic/vue';
 
+let userLat: number
+let userLong: number
 export class LocationService {
   static async getCurrentLocation(): Promise<{ lat: number; lng: number } | null> {
     try {
@@ -15,7 +17,8 @@ export class LocationService {
         enableHighAccuracy: true,
         timeout: 10000
       });
-
+      userLat = pos.coords.latitude
+      userLong = pos.coords.longitude
       return {
         lat: pos.coords.latitude,
         lng: pos.coords.longitude
@@ -24,6 +27,23 @@ export class LocationService {
       console.error('Location error:', err);
       return null;
     }
+  }
+
+
+  static async getDistanceKm(eventLat: number,eventLon: number) {
+  const earthRadius = 6371; // Earth radius in km
+  const toRad = (deg: number) => (deg * Math.PI) / 180;
+
+  const dLat = toRad(eventLat - userLat);
+  const dLon = toRad(eventLon - userLong);
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(userLat)) *
+      Math.cos(toRad(eventLat)) *
+      Math.sin(dLon / 2) ** 2;
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return earthRadius * c;
   }
 
   private static async ensurePermission(): Promise<boolean> {

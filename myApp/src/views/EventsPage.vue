@@ -275,8 +275,6 @@
    * @param sortBy 
    */
   async function loadSortedEvents(sortBy: string = currentSort.value) {
-    console.log("sortBy: ",sortBy," currentSort: ",currentSort.value);
-    console.log('events before sorting: ', events);
     const data = await apiService.getCombinedEvents()
     switch (sortBy) {
       case 'distance':
@@ -297,7 +295,6 @@
         data.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
     }
     events.value = data
-    console.log('events after sorting: ', events);
   }
 
   /**
