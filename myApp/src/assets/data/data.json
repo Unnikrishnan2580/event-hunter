@@ -3,7 +3,7 @@
       "id": "u1",
       "email": "alice@example.com",
       "name": "Alice Johnson",
-      "password": "1234",
+      "password": "P@55word$321",
       "preferences": {
         "theme": "dark",
         "language": "en",
