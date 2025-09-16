@@ -10,7 +10,7 @@
   import 'leaflet.markercluster';
   import { onMounted, watch } from 'vue';
 
-  import type { EventItem } from '@/services/api/apiService';
+  import { EventItem } from '@/types/EventItem';
 
   const props = defineProps<{ events: EventItem[] }>();
   let map: L.Map;

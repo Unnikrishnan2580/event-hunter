@@ -99,13 +99,13 @@
   import { calendar, location, navigate, pricetag } from 'ionicons/icons'
 
   import GalleryView from './GalleryView.vue'
+  import { EventItem } from '@/types/EventItem'
+  import { showErrorToast } from '@/utils/toast'
   import ReminderButton from './ReminderButton.vue'
   import SocialShare from '@/components/SocialShare.vue'
   import AddToCalendar from '@/components/AddToCalendar.vue'
   import BookmarkButton from '@/components/BookmarkEvent.vue'
-  import type { EventItem } from '@/services/api/apiService'
   import { LocationService } from '@/services/locationService'
-import { showErrorToast } from '@/utils/toast'
 
   const { t } = useI18n() // <-- i18n
 

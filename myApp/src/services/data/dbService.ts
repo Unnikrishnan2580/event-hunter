@@ -1,19 +1,5 @@
+import { EventItem } from '@/types/EventItem';
 import { openDB, IDBPDatabase, deleteDB } from 'idb';
-
-/** --- Types --- */
-export interface EventImage {
-  url: string;
-}
-export interface EventItem {
-  id: string;
-  title: string;
-  date: string;
-  location: string;
-  price?: string;
-  images?: EventImage[];
-  description: string;
-  // add other JSON-safe fields if needed
-}
 
 const DB_NAME = 'ticketmasterDB';
 const DB_VERSION = 1;
@@ -40,13 +26,21 @@ function getDB() {
 /** 🔑 Sanitize the object so it can be structured-cloned */
 function sanitizeEvent(event: any): EventItem {
   return {
-    id: String(event.id),
-    title: String(event.title ?? ''),
-    date: String(event.date ?? ''),
-    location: String(event.location ?? ''),
-    price: event.price ? String(event.price) : undefined,
-    description: event.info,
+    id: String(event?.id),
+    title: String(event?.title),
+    description: String(event?.description),
+    date: String(event?.date),
+    location: String(event?.location),
+    latitude: String(event?.latitude),
+    longitude: String(event?.longitude),
+    price: String(event?.price),
+    category: String(event?.category),
     images: (event.images || []).map((img: any) => ({ url: String(img.url) })),
+    popularity: String(event?.popularity),
+    rank: String(event?.rank),
+    distance: String(event?.distance),
+    source: String(event?.source),
+    bookmarkType: String(event?.bookmarkType)
   };
 }
 
@@ -74,7 +68,8 @@ export const dbService = {
   },
 
   /* ---------------- Bookmarks ---------------- */
-  async addBookmark(event: any) {
+  async addBookmark(event: any, bookmarkType: string ) {
+    event.bookmarkType = bookmarkType
     const db = await getDB();
     const e = sanitizeEvent(event);
     const tx = db.transaction('bookmarks', 'readwrite');

@@ -1,22 +1,6 @@
+import { EventItem } from '@/types/EventItem';
 import { LocationService } from '../locationService'
 import { apiGet, apiPost, apiGetPredictHQ } from './apiClient'
-
-export interface EventItem {
-  distance: number
-  popularity: number
-  id: string
-  title: string
-  description: string
-  date: Date
-  location: string
-  price?: string
-  latitude?: string
-  longitude?: string
-  category?: { type: string }[]
-  images?: { url: string }[]
-  rank?: number
-  source?: 'ticketmaster' | 'predicthq'
-}
 
 export const apiService = {
   // --- Existing Ticketmaster Events ---
@@ -100,7 +84,8 @@ export const apiService = {
           popularity: event?.popularity || 0,
           rank: event?.rank || 0,
           distance: parseFloat(distanceKm.toFixed(2)) || 0, // now per-event
-          source: 'ticketmaster'
+          source: 'ticketmaster',
+          bookmarkType: ''
         };
       })
     );
@@ -132,7 +117,8 @@ export const apiService = {
         popularity: event?.popularity || 0,
         rank: event.rank || 0,
         distance: parseFloat(distanceKm.toFixed(2)) || 0, // per-event distance
-        source: 'predicthq'
+        source: 'predicthq',
+        bookmarkType: ''
       };
     })
   );

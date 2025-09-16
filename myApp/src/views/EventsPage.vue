@@ -9,12 +9,12 @@
           {{ t('appTitles.events') }}
         </ion-title>
 
-        <Ion-buttons slot="end">
+        <ion-buttons slot="end">
           <!-- <sort-component v-model="sortKey"></sort-component> -->
            <ion-button @click="showSortSheet">
             <ion-icon :icon="funnel"></ion-icon>
            </ion-button>
-        </Ion-buttons>
+        </ion-buttons>
 
         <ion-buttons slot="end">
           <!-- Funnel icon button to toggle filter visibility -->
@@ -97,11 +97,12 @@
   import { ref, computed, onMounted } from 'vue'
   import { filter, funnel } from 'ionicons/icons'
 
+  import { EventItem } from '@/types/EventItem'
   import { dbService } from '@/services/data/dbService'
   import FilterComponent from '@/components/EventFilter.vue'
   import { LocationService } from '@/services/locationService';
   import { openNetworkSettings } from '@/services/networkService'
-  import { apiService, EventItem } from '@/services/api/apiService'
+  import { apiService } from '@/services/api/apiService'
 
   import EventCard from '@/components/EventCard.vue'
   import SearchBar from '@/components/SearchBar.vue'
@@ -279,10 +280,10 @@
     switch (sortBy) {
       case 'distance':
         // Ensure each EventItem has distance computed if you need real distance logic
-        data.sort((a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity))
+        data.sort((a, b) => (parseFloat(a.distance) ?? Infinity) - (parseFloat(b.distance) ?? Infinity))
         break
       case 'popularity':
-        data.sort((a, b) => (b.popularity ?? 0) - (a.popularity ?? 0))
+        data.sort((a, b) => (parseFloat(b.popularity) ?? 0) - (parseFloat(a.popularity) ?? 0))
         break
       case 'price':
         data.sort((a, b) => {

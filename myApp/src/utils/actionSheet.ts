@@ -20,7 +20,8 @@ export async function showActionSheet(options: ActionSheetOptions) {
   const sheet = await actionSheetController.create({
     header: options.header,
     subHeader: options.subHeader,
-    buttons: options.buttons
+    buttons: options.buttons,
+    mode: 'ios'
   })
   await sheet.present()
 }

@@ -18,8 +18,10 @@
   import { heart, heartOutline } from 'ionicons/icons'
   import { ref, onMounted, watch, computed } from 'vue'
 
+  import { EventItem } from '@/types/EventItem'
   import { eventBus } from '@/services/eventBus'
-  import { dbService, EventItem } from '@/services/data/dbService';
+  import { dbService } from '@/services/data/dbService';
+  import { openBookmarkSheet } from '@/composables/BookmarkSheet'
 
   const { t } = useI18n() // <-- i18n
   const props = defineProps<{ event: EventItem }>()
@@ -49,7 +51,10 @@
       await dbService.removeBookmark(props.event.id)
       bookmarked.value = false
     } else {
-      await dbService.addBookmark(props.event)
+      await openBookmarkSheet(async (bookmarkBy: string) => {
+        const bookmarkType = bookmarkBy
+        await dbService.addBookmark(props.event,bookmarkType)
+      })
       bookmarked.value = true
     }
     eventBus.emit('bookmarkChanged')

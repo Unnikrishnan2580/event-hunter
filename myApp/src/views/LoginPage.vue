@@ -88,8 +88,8 @@
     tryBiometricRestore,
     enableBiometricsForCurrentUser,
   } from '@/services/auth/auth'
-  import { showAlert } from '@/utils/alert'
   import { showErrorToast } from '@/utils/toast'
+  import { showActionSheet } from '@/utils/actionSheet'
 
   const { t } = useI18n() // <-- i18n
 
@@ -160,17 +160,21 @@
   async function promptEnableBiometric() {
     const s = await canUseBiometrics()
     if (!s.available) return
-    await showAlert({
+    showActionSheet({
       header: t('biometric.enableHeader'),
-      message: t('biometric.enableMessage'),
+      subHeader: t('biometric.enableMessage'),
       buttons: [
-        { text: t('common.no'), role: 'cancel' },
         {
           text: t('common.yes'),
-          handler: () => {
+          handler: () => 
+          {
             enableBiometricsForCurrentUser()
             router.replace('/tabs/events')
           }
+        },
+        {
+          text: t('common.cancel'),
+          role: 'cancel'
         }
       ]
     })
