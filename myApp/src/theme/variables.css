@@ -1,2 +1,120 @@
-/* For information on how to create your own theme, please see:
-http://ionicframework.com/docs/theming/ */
+/* ---------- Light mode (default) ---------- */
+:root {
+  /* Ionic default colors */
+  --ion-color-primary:        #3880ff;
+  --ion-color-primary-rgb:    56,128,255;
+  --ion-color-primary-contrast: #ffffff;
+
+  --ion-color-secondary:      #5260ff;
+  --ion-color-secondary-contrast: #ffffff;
+
+  --ion-color-tertiary:       #2dd36f;
+  --ion-color-tertiary-contrast: #ffffff;
+
+  --ion-color-success:        #10dc60;
+  --ion-color-warning:        #ffce00;
+  --ion-color-danger:         #f04141;
+  --ion-color-medium:         #92949c;
+  --ion-color-light:          #f4f5f8;
+  --ion-color-dark:           #222428;
+
+  /* Global text & background */
+  --ion-background-color:     #ffffff;
+  --ion-text-color:           #000000;
+
+  /* App-wide custom vars */
+  --app-icon-color:           var(--ion-color-dark);
+  --app-border-color:         #e0e0e0;
+
+  /* -------- Global ion-card styles (Light) -------- */
+  --ion-card-background:      #ffffff;
+  --ion-card-color:           var(--ion-text-color);
+  --ion-card-border-color:    #e0e0e0;
+}
+
+/* ---------- Dark Mode Override ---------- */
+body.dark {
+  --ion-color-primary:        #4a8dff;
+  --ion-color-primary-contrast: #000000;
+
+  --ion-color-secondary:      #7d8aff;
+  --ion-color-secondary-contrast: #000000;
+
+  --ion-color-tertiary:       #2fdf75;
+  --ion-color-tertiary-contrast: #000000;
+
+  --ion-color-success:        #2fdf75;
+  --ion-color-warning:        #ffd534;
+  --ion-color-danger:         #ff4961;
+  --ion-color-medium:         #989aa2;
+  --ion-color-light:          #1e1e1e;
+  --ion-color-dark:           #f4f5f8;
+
+  --ion-background-color:     #121212fa;
+  --ion-text-color:           #ffffff;
+
+  --app-icon-color:           var(--ion-color-light);
+  --app-border-color:         #333333;
+
+  /* -------- Global ion-card styles (Dark) -------- */
+  --ion-card-background:      #1e1e1e;
+  --ion-card-color:           var(--ion-text-color);
+  --ion-card-border-color:    #333333;
+}
+
+/* ---------- Apply global card variables ---------- */
+ion-card {
+  --background: var(--ion-card-background);
+  --color: var(--ion-card-color);
+  border: 1px solid var(--ion-card-border-color);
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+/* ---------- IonSegment Global Styling ---------- */
+
+/* Light mode defaults */
+ion-segment {
+  --background: var(--ion-color-light);          /* Segment container background */
+  --indicator-color: var(--ion-color-primary);   /* Active tab indicator */
+  --color: var(--ion-color-dark);                /* Unselected text color */
+  --color-checked: var(--ion-color-primary);     /* Selected text color */
+
+  /* Increase overall height */
+  --height: 45px;                                /* Default is ~44px */
+  min-height: var(--height);
+  height: var(--height);
+  align-items: center;
+}
+
+/* Segment buttons */
+ion-segment-button {
+  --color: var(--ion-color-medium);
+  --color-checked: var(--ion-color-primary);
+  --background: transparent;
+  margin: 2%;
+  font-weight: 600;
+  text-transform: none; /* keep normal case */
+  line-height: var(--height);
+}
+
+/* Dark mode overrides */
+body.dark ion-segment {
+  --background: #1e1e1e;
+  --indicator-color: var(--ion-color-primary);
+  --color: var(--ion-color-light);
+  --color-checked: var(--ion-color-primary);
+}
+
+body.dark ion-segment-button {
+  --color: var(--ion-color-medium);
+  --color-checked: var(--ion-color-primary);
+}
+
+/* Optional global toolbar padding */
+ion-toolbar {
+  --padding-top: 7.5%;
+}
+ion-toolbar .ion-title {
+  --padding-top: 7.5%;
+}

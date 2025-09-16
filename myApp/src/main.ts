@@ -20,6 +20,12 @@ import '@ionic/vue/css/text-transformation.css';
 import '@ionic/vue/css/flex-utils.css';
 import '@ionic/vue/css/display.css';
 
+import { StatusBar, Style } from '@capacitor/status-bar';
+
+import i18n from '@/assets/i18n'
+import { useTheme } from './composables/useTheme'
+import { currentUser } from './services/auth/auth'
+import { restoreSession, tryBiometricRestore } from './services/auth/auth'
 /**
  * Ionic Dark Mode
  * -----------------------------------------------------
@@ -34,10 +40,22 @@ import '@ionic/vue/css/palettes/dark.system.css';
 /* Theme variables */
 import './theme/variables.css';
 
-const app = createApp(App)
-  .use(IonicVue)
-  .use(router);
+restoreSession()
+const app = createApp(App).use(IonicVue).use(router);
 
-router.isReady().then(() => {
+// Start watching theme preference
+const theme = currentUser?.value?.preferences?.theme ? currentUser.value.preferences.theme : 'light'
+const setTheme = useTheme
+const { applyTheme } = setTheme()
+applyTheme(theme)
+router.isReady().then(async () => {
+  await tryBiometricRestore()
+  await StatusBar.setOverlaysWebView({ overlay: true });
+  
+  // Optional: match Ionic toolbar color
+  await StatusBar.setBackgroundColor({ color: '#3880ff' }); // your primary color
+  await StatusBar.setStyle({ style: Style.Light });
+  app.use(i18n)
+
   app.mount('#app');
 });

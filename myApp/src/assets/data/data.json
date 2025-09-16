@@ -1,0 +1,38 @@
+[
+    {
+      "id": "u1",
+      "email": "alice@example.com",
+      "name": "Alice Johnson",
+      "password": "1234",
+      "preferences": {
+        "theme": "dark",
+        "language": "en",
+        "reminder": "5"
+      },
+      "avatar": "https://i.pravatar.cc/150?img=1"
+    },
+    {
+      "id": "u2",
+      "email": "bob@example.com",
+      "name": "Bob Smith",
+      "password": "P@55word$321",
+      "preferences": {
+        "theme": "dark",
+        "language": "fr",
+        "reminder": "10"
+      },
+      "avatar": "https://i.pravatar.cc/150?img=2"
+    },
+    {
+      "id": "u3",
+      "email": "carol@example.com",
+      "name": "Carol Davis",
+      "password": "P@55word$321",
+      "preferences": {
+        "theme": "light",
+        "language": "es",
+        "reminder": "5"
+      },
+      "avatar": "https://i.pravatar.cc/150?img=3"
+    }
+]

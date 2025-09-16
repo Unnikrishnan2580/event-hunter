@@ -1,0 +1,12 @@
+{
+  "login": {
+    "title": "Connexion",
+    "email": "e-mail",
+    "password": "Mot de passe",
+    "emailPlaceholder": "Entrez votre e-mail",
+    "passwordPlaceholder": "Entrez votre mot de passe",
+    "submit": "Se connecter",
+    "invalidEmail": "Veuillez entrer un e-mail valide.",
+    "requiredPassword": "Le mot de passe ne peut pas être vide."
+  }
+}

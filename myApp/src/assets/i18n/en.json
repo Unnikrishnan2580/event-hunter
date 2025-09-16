@@ -1,0 +1,78 @@
+{
+  "login": {
+    "title": "Welcome to Event Hunter!",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Password",
+    "signIn": "Sign In",
+    "unlockBiometric": "Unlock with biometrics"
+  },
+  "appTitles": {
+    "filterTitle": "Filter Events",
+    "bookmarkedTitle": "Bookmarked Events",
+    "navigateEvent": "Navigate to Event",
+    "events": "Events"
+  },
+  "appLabels": {
+    "calendarLabel": "Calendar",
+    "bookmarkLabel": "Bookmark",
+    "navigateLabel": "Navigate",
+    "detailsLabel": "Details",
+    "mapLabel": "Map",
+    "noteLabel": "Note",
+    "categoryLabel": "Category",
+    "startDateLabel": "Start Date",
+    "endDateLabel": "End Date",
+    "distanceLabel": "Distance (km)",
+    "priceRangeLabel": "Price Range",
+    "remindMeLabel": "Remind Me",
+    "shareLabel": "Share"
+  },
+  "appButtonLabels": {
+    "applyButtonLabel": "Apply"
+  },
+  "errorMessages": {
+    "invalidEmail": "Invalid email address",
+    "passwordRequired": "Password required",
+    "loginFailure": "Sorry, Invalid credentials. Please check your credentials.",
+    "calendarAddFailed": "Sorry, Failed to add event to your calendar.",
+    "reminderErrorMessage": "Unable to set reminder for the event ",
+    "locationErrorMessage": "Please enable your location and try again.",
+    "mapPermissionError": "Unable to access location. Please enable GPS/permissions."
+  },
+  "successMessages": {
+    "calendarAddSuccess": "Event added to calendar successfully!"
+  },
+  "requestMessages": {
+    "enableBiometricAUth": "Please enable biometric authentication for secure access."
+  },
+  "disclaimerMessages": {
+    "loadingMessage": "Loading events…",
+    "noMapData": "No map data available for this event.",
+    "noBookmarks": "You have't bookmarked any events till now.",
+    "offlineMessage": "You are offline."
+  },
+  "biometric": {
+    "enableHeader": "Enable biometrics?",
+    "enableMessage": "Use Face ID / fingerprint to unlock the app faster next time."
+  },
+  "common": {
+    "yes": "Yes",
+    "no": "No",
+    "searchPlaceholder": "Search events…",
+    "preferences": "Preferences",
+    "darkTheme": "Dark Theme",
+    "Language": "Language",
+    "cancel": "Cancel",
+    "mobileData": "'Open Mobile Data Settings'",
+    "wifiSettings": "Open Wi-Fi Settings",
+    "noInternet": "No Internet Connection",
+    "enableInternet": "Please enable Wi-Fi or Mobile Data"
+  },
+  "menuLabels":{
+    "homeLabel": "Home",
+    "discoverLabel": "Discover",
+    "bookmarkLabel": "Bookmark",
+    "profileLabel": "Profile",
+    "logoutLabel": "Logout"
+  }
+}
