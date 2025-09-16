@@ -71,6 +71,14 @@ ion-card {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: background-color 0.25s ease, color 0.25s ease;
 }
+
+ion-card-header{
+  text-align: center;
+}
+
+body.dark ion-card-title{
+  --color: #ffffff;
+}
 /* ---------- IonSegment Global Styling ---------- */
 
 /* Light mode defaults */

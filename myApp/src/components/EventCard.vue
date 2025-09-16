@@ -15,7 +15,7 @@
     </div>
     <!-- Image Collage ends--> 
 
-    <ion-card-header>
+    <ion-card-header style="text-align: left;">
       <ion-card-subtitle>{{ event.title }}</ion-card-subtitle>
     </ion-card-header>
 

@@ -16,6 +16,9 @@
       <!-- User Info Card -->
       <ion-card>
         <ion-card-header>
+          <ion-avatar style="margin: 0 auto; width: 96px; height: 96px;">
+            <img :src="profile.avatar" alt="Profile picture" />
+          </ion-avatar>
           <ion-card-title>{{ profile.name }}</ion-card-title>
           <ion-card-subtitle>{{ profile.email }}</ion-card-subtitle>
         </ion-card-header>
@@ -87,6 +90,7 @@
 <script setup lang="ts">
 
   import {
+    IonImg,
     IonPage, 
     IonCard, 
     IonItem, 
@@ -98,6 +102,7 @@
     IonTitle, 
     IonToggle, 
     IonHeader, 
+    IonAvatar,
     IonSelect, 
     IonToolbar, 
     IonButtons, 
