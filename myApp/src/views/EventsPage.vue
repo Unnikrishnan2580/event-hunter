@@ -169,9 +169,8 @@
    * * Method to load events from cache DB or from API(whenever network connection is available)
    * @param pageNum 
    */
-  async function loadEvents(pageNum = 0) {
+  async function loadEvents(pageNum: number) {
     loading.value = true
-    events.value = []
     try {
       if (!isOnline.value) {
         // offline: use cached IndexedDB data
@@ -243,8 +242,7 @@
    * * Method to handle event search based on keyword
    * @param keyword 
    */
-  async function handleSearch(keyword: string) {
-    events.value = []
+  async function handleSearch(keyword: string) {    
     loading.value = true
     if (!keyword) return
     events.value = await apiService.getCombinedEvents(keyword, 0, 20)
@@ -280,20 +278,20 @@
     switch (sortBy) {
       case 'distance':
         // Ensure each EventItem has distance computed if you need real distance logic
-        data.sort((a, b) => (parseFloat(a.distance) ?? Infinity) - (parseFloat(b.distance) ?? Infinity))
+        data.sort((a: { distance: string }, b: { distance: string }) => (parseFloat(a.distance) ?? Infinity) - (parseFloat(b.distance) ?? Infinity))
         break
       case 'popularity':
-        data.sort((a, b) => (parseFloat(b.popularity) ?? 0) - (parseFloat(a.popularity) ?? 0))
+        data.sort((a: { popularity: string }, b: { popularity: string }) => (parseFloat(b.popularity) ?? 0) - (parseFloat(a.popularity) ?? 0))
         break
       case 'price':
-        data.sort((a, b) => {
+        data.sort((a: { price: string }, b: { price: string }) => {
           const pa = parseFloat(a.price?.split(' ')[0] || '0')
           const pb = parseFloat(b.price?.split(' ')[0] || '0')
           return pa - pb
         })
         break
       default: // date
-        data.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+        data.sort((a: { date: string | number | Date }, b: { date: string | number | Date }) => new Date(a.date).getTime() - new Date(b.date).getTime())
     }
     events.value = data
   }

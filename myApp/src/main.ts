@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router';
-
+import { createPinia } from 'pinia';
 import { IonicVue } from '@ionic/vue';
 
 /* Core CSS required for Ionic components to work properly */
@@ -46,7 +46,7 @@ import './theme/variables.css';
 
 restoreSession()
 const app = createApp(App).use(IonicVue).use(router);
-
+const pinia = createPinia();
 // Start watching theme preference
 const theme = currentUser?.value?.preferences?.theme ? currentUser.value.preferences.theme : 'light'
 const setTheme = useTheme
@@ -60,6 +60,6 @@ router.isReady().then(async () => {
   await StatusBar.setBackgroundColor({ color: '#3880ff' }); // your primary color
   await StatusBar.setStyle({ style: Style.Light });
   app.use(i18n)
-
+  app.use(pinia);
   app.mount('#app');
 });

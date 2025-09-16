@@ -103,7 +103,7 @@
 
       <!-- ---------- Map Segment ---------- -->
       <div v-show="activeSegment==='map'" class="map-wrapper">
-        <div v-if="centerReady" id="map" style="height: 900px;"></div>
+        <div v-if="centerReady" id="eventMap" style="height: 900px;"></div>
         <div v-else class="ion-padding">
           <p>{{ t('disclaimerMessages.noMapData') }}</p>
         </div>
@@ -162,21 +162,38 @@
   const center = ref<[number, number] | null>(null)
   const centerReady = computed(() => Array.isArray(center.value))
   const shareUrl = computed(() => `${window.location.origin}/events/${route.params.id}`)
+  delete (L.Icon.Default.prototype as any)._getIconUrl
+  L.Icon.Default.mergeOptions({
+    iconRetinaUrl:
+      'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+    iconUrl:
+      'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+    shadowUrl:
+      'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+  })
 
   /**
    * loadMap
-   * * Funtion to display event location in map within the App
+   * * Function to display event location in map within the App
    * @param latitude 
    * @param longitude 
    */
   async function loadMap(latitude: number,longitude: number){
     await nextTick()
-    const map = L.map('map').setView([latitude, longitude], 13)
+    const map = L.map('eventMap', {
+      center: [latitude, longitude],
+      zoom: 13,
+      zoomControl: true
+    })
+    
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors'
     }).addTo(map)
     const marker = L.marker([latitude, longitude]).addTo(map)
     marker.bindPopup(event.value.name || 'Event').openPopup()
+    
+    map.invalidateSize()
+    map.setView([latitude, longitude], 13)
   }
 
   /**
@@ -302,6 +319,11 @@
 
   .navigate-label {
     font-size: 10px;
+  }
+
+  #eventMap {
+    width: 100%;
+    height: 100%; /* or a specific height like 100vh */
   }
 
 </style>

@@ -1,11 +1,13 @@
 // src/services/apiClient.ts
 import { CapacitorHttp } from '@capacitor/core'
+import { APP_CONSTANTS } from '../constants'
 
-const TM_BASE_URL = 'https://app.ticketmaster.com/discovery/v2'
-const TM_API_KEY = 'S7ZmuMWGY7k5qbx3zXlhli7f1VTWi4no'
+const TM_BASE_URL = APP_CONSTANTS.TM_BASE_URL;
+const TM_API_KEY = APP_CONSTANTS.TM_API_KEY;
 
-const PHQ_BASE_URL = 'https://api.predicthq.com/v1'
-const PHQ_API_KEY = 'KWiwlYHm-So7r4ED2ejIvRoM6fhu4sq-4uw4URDJ'
+const PHQ_BASE_URL = APP_CONSTANTS.PHQ_BASE_URL;
+const PHQ_API_KEY = APP_CONSTANTS.PHQ_API_KEY;
+
 
 // --- Ticketmaster GET ---
 export async function apiGet<T>(
